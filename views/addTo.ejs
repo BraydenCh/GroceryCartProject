@@ -1,0 +1,62 @@
+<html>
+  <title>Grocery Cart</title>
+  
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script>
+    $(function() {
+      $("#myform").bind('ajax:complete', function() {
+             // tasks to do 
+             alert('1');
+       });    
+    });
+  </script>
+    <head>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <h1>Grocery Shopping List:</h1>
+        <h2 id="count-el">Add to Main Database:</h2>
+        <!-- Create a INCREMENT button with the id="increment-btn" -->
+        
+
+        <form method = "post" action = "/adding" id="myform" class = "login">
+            <div>
+              <label for="uname">Food Name </label>
+              <input type="text" id="uname" name="name" value =""/>
+
+              <label for="qty">Price </label>
+              <input type="text" id="qty" name="name" value = "" />
+
+            </div>
+            <div>
+              <button type='submit' id="increment-btn">Submit</button>
+              <table id="table-el" width="100%">
+                <h3>Items Currently in Database:</h2>
+                <tr>
+                    <th>Food Name</th>
+                    <th>Price</th>
+                </tr>
+                  <% if (result.length>0) { %>
+                    <% result.forEach(res => { %>
+                    <tr>
+                      <th><%= res.food_name %></th>
+                      <th><%= res.price %></th>
+
+                    </tr>
+
+                    <% }) %>
+                    <% } %>
+              </table>
+              
+            </div>
+          </form>
+
+
+          <a href="/">Return to Database</a>
+
+
+
+       
+    
+    </body>
+</html>

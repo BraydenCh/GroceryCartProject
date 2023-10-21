@@ -1,0 +1,79 @@
+<html>
+  <title>Grocery Cart</title>
+  
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script>
+    $(function() {
+      $("#myform").bind('ajax:complete', function() {
+             alert('1');
+       });    
+    });
+  </script>
+    <head>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <h1>Grocery Shopping List:</h1>
+        <h2> TOTAL: $<%= totalSum %></h2>
+        <h3>WARNING: If an item is not added, it is not in the database</h2>
+        <!-- Create a INCREMENT button with the id="increment-btn" -->
+        
+
+        <form method = "post" action = "/action" id="myform" class = "login">
+            <div>
+              <label for="uname">Food Name </label>
+              <input type="text" id="uname" name="name" value =""/>
+
+              <label for="qty">Amount(Number) </label>
+              <input type="number" id="qty" name="name" value = ""/>
+
+            </div>
+            <div>
+              <button type='submit' id="increment-btn">Submit</button>
+              <table id="table-el" width="100%">
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                </tr>
+                  <% if (result.length>0) { %>
+                    <% result.forEach(res => { %>
+                    <tr>
+                      <th id = "1"><%= res.food_name %></th>
+                      <th id = "2"><%= res.quantity %></th>
+                      <th id = "3"><%= res.price * res.quantity %></th>
+
+                    </tr>
+
+                    <% }) %>
+                    <% } %>
+              </table>
+              
+              
+            </div>
+          </form>
+
+
+          <form method = "post" action = "/remove" id="myform2" class = "login">
+            <div>
+              <label for="uname">Food Name </label>
+              <input type="text" id="uname" name="name" value =""/>
+
+
+            </div>
+            <div>
+              <button type='submit' id="increment-btn">Remove From Database</button>
+              <script src="yoyo.js"></script>
+              
+            </div>
+          </form>
+
+
+          <a href="/addTo">Add to Database</a>
+
+
+
+  
+    
+    </body>
+</html>
